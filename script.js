@@ -46,18 +46,18 @@ generateGrid(); // Initial grid setup
 // }
 
 /****My version more intentional and controlled****/
-// function animateWave() {
-//   for (let dot of dots) {
-//     const x = parseInt(dot.dataset.x);
-//     const y = parseInt(dot.dataset.y);
-//     if (x + y === wave) {
-//       dot.classList.add("glow");
-//       setTimeout(() => dot.classList.remove("glow"), 400);
-//     }
-//   }
-//   wave >= cols + rows ? (wave = 0) : wave++;
-//   requestAnimationFrame(animateWave);
-// }
+function animateWave() {
+  for (let dot of dots) {
+    const x = parseInt(dot.dataset.x);
+    const y = parseInt(dot.dataset.y);
+    if (x + y === wave) {
+      dot.classList.add("glow");
+      setTimeout(() => dot.classList.remove("glow"), 400);
+    }
+  }
+  wave >= cols + rows ? (wave = 0) : wave++;
+  requestAnimationFrame(animateWave);
+}
 
 // animateWave(); // Start loop once
 
@@ -119,9 +119,9 @@ function crissCrossWave() {
   }
 }
 
-// window.addEventListener("load", () => {
-//   crissCrossWave(); // Start the vertical wave on page load
-// });
+window.addEventListener("load", () => {
+  crissCrossWave(); // Start the vertical wave on page load
+});
 
 /*****Twinkling effect*****/
 function twinkleEffect() {
@@ -138,7 +138,7 @@ function twinkleEffect() {
   }
 }
 
-// setInterval(twinkleEffect, 100); // Twinkle every second
+setInterval(twinkleEffect, 100); // Twinkle every second
 
 function handleHover(e) {
   const target = e.target;
@@ -183,7 +183,7 @@ function waterWave() {
   }
 }
 
-// waterWave(); // Start the wave effect on page load
+waterWave(); // Start the wave effect on page load
 
 // Find center dot and glow
 const centerX = Math.floor(cols / 2);
@@ -200,275 +200,287 @@ function glowCenterDot() {
 }
 glowCenterDot(); // Start the glow effect on page load
 
+// --- Eye drawing functions ---
+let eyeSpacing = 5; // Space between eyes
+// let leftPupilPositioningX = 5;
+// let leftPupilPositioningY = 0;
+// let rightPupilPositioningX = 5;
+// let rightPupilPositioningY= 0;
+
 function getEyeCoordsShut() {
   return {
     // Left
-    coord1: [centerX - 7, centerY],
-    coord2: [centerX - 8, centerY + 1],
-    coord3: [centerX - 9, centerY + 1],
-    coord4: [centerX - 10, centerY + 2],
-    coord5: [centerX - 11, centerY + 2],
-    coord6: [centerX - 12, centerY + 2],
-    coord7: [centerX - 13, centerY + 2],
-    coord8: [centerX - 14, centerY + 2],
-    coord9: [centerX - 15, centerY + 2],
-    coord10: [centerX - 16, centerY + 2],
-    coord11: [centerX - 17, centerY + 1],
-    coord12: [centerX - 18, centerY + 1],
-    coord13: [centerX - 19, centerY],
+    coords1: [centerX - eyeSpacing, centerY],
+    coords2: [centerX - eyeSpacing - 1, centerY + 1],
+    coords3: [centerX - eyeSpacing - 2, centerY + 1],
+    coords4: [centerX - eyeSpacing - 3, centerY + 2],
+    coords5: [centerX - eyeSpacing - 4, centerY + 2],
+    coords6: [centerX - eyeSpacing - 5, centerY + 2],
+    coords7: [centerX - eyeSpacing - 6, centerY + 2],
+    coords8: [centerX - eyeSpacing - 7, centerY + 2],
+    coords9: [centerX - eyeSpacing - 8, centerY + 2],
+    coords10: [centerX - eyeSpacing - 9, centerY + 2],
+    coords11: [centerX - eyeSpacing - 10, centerY + 1],
+    coords12: [centerX - eyeSpacing - 11, centerY + 1],
+    coords13: [centerX - eyeSpacing - 12, centerY],
 
     // Left brows
-    coord14: [centerX - 10, centerY + 3],
-    coord15: [centerX - 12, centerY + 3],
-    coord16: [centerX - 14, centerY + 3],
-    coord17: [centerX - 16, centerY + 3],
-    coord18: [centerX - 9, centerY + 4],
-    coord19: [centerX - 12, centerY + 4],
-    coord20: [centerX - 14, centerY + 4],
-    coord21: [centerX - 17, centerY + 4],
+    coords14: [centerX - eyeSpacing - 3, centerY + 3],
+    coords15: [centerX - eyeSpacing - 5, centerY + 3],
+    coords16: [centerX - eyeSpacing - 7, centerY + 3],
+    coords17: [centerX - eyeSpacing - 9, centerY + 3],
+    coords18: [centerX - eyeSpacing - 2, centerY + 4],
+    coords19: [centerX - eyeSpacing - 5, centerY + 4],
+    coords20: [centerX - eyeSpacing - 7, centerY + 4],
+    coords21: [centerX - eyeSpacing - 10, centerY + 4],
 
     // Right
-    coord22: [centerX + 7, centerY],
-    coord23: [centerX + 8, centerY + 1],
-    coord24: [centerX + 9, centerY + 1],
-    coord25: [centerX + 10, centerY + 2],
-    coord26: [centerX + 11, centerY + 2],
-    coord27: [centerX + 12, centerY + 2],
-    coord28: [centerX + 13, centerY + 2],
-    coord29: [centerX + 14, centerY + 2],
-    coord30: [centerX + 15, centerY + 2],
-    coord31: [centerX + 16, centerY + 2],
-    coord32: [centerX + 17, centerY + 1],
-    coord33: [centerX + 18, centerY + 1],
-    coord34: [centerX + 19, centerY],
+    coords22: [centerX + eyeSpacing, centerY],
+    coords23: [centerX + eyeSpacing + 1, centerY + 1],
+    coords24: [centerX + eyeSpacing + 2, centerY + 1],
+    coords25: [centerX + eyeSpacing + 3, centerY + 2],
+    coords26: [centerX + eyeSpacing + 4, centerY + 2],
+    coords27: [centerX + eyeSpacing + 5, centerY + 2],
+    coords28: [centerX + eyeSpacing + 6, centerY + 2],
+    coords29: [centerX + eyeSpacing + 7, centerY + 2],
+    coords30: [centerX + eyeSpacing + 8, centerY + 2],
+    coords31: [centerX + eyeSpacing + 9, centerY + 2],
+    coords32: [centerX + eyeSpacing + 10, centerY + 1],
+    coords33: [centerX + eyeSpacing + 11, centerY + 1],
+    coords34: [centerX + eyeSpacing + 12, centerY],
 
     // Right brows
-    coord35: [centerX + 10, centerY + 3],
-    coord36: [centerX + 12, centerY + 3],
-    coord37: [centerX + 14, centerY + 3],
-    coord38: [centerX + 16, centerY + 3],
-    coord39: [centerX + 9, centerY + 4],
-    coord40: [centerX + 12, centerY + 4],
-    coord41: [centerX + 14, centerY + 4],
-    coord42: [centerX + 17, centerY + 4],
+    coords35: [centerX + eyeSpacing + 3, centerY + 3],
+    coords36: [centerX + eyeSpacing + 5, centerY + 3],
+    coords37: [centerX + eyeSpacing + 7, centerY + 3],
+    coords38: [centerX + eyeSpacing + 9, centerY + 3],
+    coords39: [centerX + eyeSpacing + 2, centerY + 4],
+    coords40: [centerX + eyeSpacing + 5, centerY + 4],
+    coords41: [centerX + eyeSpacing + 7, centerY + 4],
+    coords42: [centerX + eyeSpacing + 10, centerY + 4],
   };
 }
 
 function getEyeCoordsSemiShut() {
   return {
     // Left
-    coord1: [centerX - 7, centerY],
-    coord2: [centerX - 8, centerY - 1],
-    coord3: [centerX - 9, centerY - 1],
-    coord4: [centerX - 10, centerY - 1],
-    coord5: [centerX - 11, centerY - 1],
-    coord6: [centerX - 12, centerY - 1],
-    coord7: [centerX - 13, centerY - 1],
-    coord8: [centerX - 14, centerY - 1],
-    coord9: [centerX - 15, centerY - 1],
-    coord10: [centerX - 16, centerY - 1],
-    coord11: [centerX - 17, centerY - 1],
-    coord12: [centerX - 18, centerY - 1],
-    coord13: [centerX - 19, centerY],
-    coord14: [centerX - 8, centerY + 1],
-    coord15: [centerX - 9, centerY + 1],
-    coord16: [centerX - 10, centerY + 1],
-    coord17: [centerX - 12, centerY + 1],
-    coord18: [centerX - 11, centerY + 1],
-    coord19: [centerX - 13, centerY + 1],
-    coord20: [centerX - 14, centerY + 1],
-    coord21: [centerX - 15, centerY + 1],
-    coord22: [centerX - 16, centerY + 1],
-    coord23: [centerX - 17, centerY + 1],
-    coord24: [centerX - 18, centerY + 1],
+    coords1: [centerX - eyeSpacing, centerY],
+    coords2: [centerX - eyeSpacing - 1, centerY - 1],
+    coords3: [centerX - eyeSpacing - 2, centerY - 1],
+    coords4: [centerX - eyeSpacing - 3, centerY - 1],
+    coords5: [centerX - eyeSpacing - 4, centerY - 1],
+    coords6: [centerX - eyeSpacing - 5, centerY - 1],
+    coords7: [centerX - eyeSpacing - 6, centerY - 1],
+    coords8: [centerX - eyeSpacing - 7, centerY - 1],
+    coords9: [centerX - eyeSpacing - 8, centerY - 1],
+    coords10: [centerX - eyeSpacing - 9, centerY - 1],
+    coords11: [centerX - eyeSpacing - 10, centerY - 1],
+    coords12: [centerX - eyeSpacing - 11, centerY - 1],
+    coords13: [centerX - eyeSpacing - 12, centerY],
+    coords14: [centerX - eyeSpacing - 1, centerY + 1],
+    coords15: [centerX - eyeSpacing - 2, centerY + 1],
+    coords16: [centerX - eyeSpacing - 3, centerY + 1],
+    coords17: [centerX - eyeSpacing - 5, centerY + 1],
+    coords18: [centerX - eyeSpacing - 4, centerY + 1],
+    coords19: [centerX - eyeSpacing - 6, centerY + 1],
+    coords20: [centerX - eyeSpacing - 7, centerY + 1],
+    coords21: [centerX - eyeSpacing - 8, centerY + 1],
+    coords22: [centerX - eyeSpacing - 9, centerY + 1],
+    coords23: [centerX - eyeSpacing - 10, centerY + 1],
+    coords24: [centerX - eyeSpacing - 11, centerY + 1],
 
     // Right
-    coord25: [centerX + 7, centerY],
-    coord26: [centerX + 8, centerY - 1],
-    coord27: [centerX + 9, centerY - 1],
-    coord28: [centerX + 10, centerY - 1],
-    coord29: [centerX + 11, centerY - 1],
-    coord30: [centerX + 12, centerY - 1],
-    coord31: [centerX + 13, centerY - 1],
-    coord32: [centerX + 14, centerY - 1],
-    coord33: [centerX + 15, centerY - 1],
-    coord34: [centerX + 16, centerY - 1],
-    coord35: [centerX + 17, centerY - 1],
-    coord36: [centerX + 18, centerY - 1],
-    coord37: [centerX + 19, centerY],
-    coord38: [centerX + 8, centerY + 1],
-    coord39: [centerX + 9, centerY + 1],
-    coord40: [centerX + 10, centerY + 1],
-    coord41: [centerX + 12, centerY + 1],
-    coord42: [centerX + 11, centerY + 1],
-    coord43: [centerX + 13, centerY + 1],
-    coord44: [centerX + 14, centerY + 1],
-    coord45: [centerX + 15, centerY + 1],
-    coord46: [centerX + 16, centerY + 1],
-    coord47: [centerX + 17, centerY + 1],
-    coord48: [centerX + 18, centerY + 1],
+    coords25: [centerX + eyeSpacing, centerY],
+    coords26: [centerX + eyeSpacing + 1, centerY - 1],
+    coords27: [centerX + eyeSpacing + 2, centerY - 1],
+    coords28: [centerX + eyeSpacing + 3, centerY - 1],
+    coords29: [centerX + eyeSpacing + 4, centerY - 1],
+    coords30: [centerX + eyeSpacing + 5, centerY - 1],
+    coords31: [centerX + eyeSpacing + 6, centerY - 1],
+    coords32: [centerX + eyeSpacing + 7, centerY - 1],
+    coords33: [centerX + eyeSpacing + 8, centerY - 1],
+    coords34: [centerX + eyeSpacing + 9, centerY - 1],
+    coords35: [centerX + eyeSpacing + 10, centerY - 1],
+    coords36: [centerX + eyeSpacing + 11, centerY - 1],
+    coords37: [centerX + eyeSpacing + 12, centerY],
+    coords38: [centerX + eyeSpacing + 1, centerY + 1],
+    coords39: [centerX + eyeSpacing + 2, centerY + 1],
+    coords40: [centerX + eyeSpacing + 3, centerY + 1],
+    coords41: [centerX + eyeSpacing + 5, centerY + 1],
+    coords42: [centerX + eyeSpacing + 4, centerY + 1],
+    coords43: [centerX + eyeSpacing + 6, centerY + 1],
+    coords44: [centerX + eyeSpacing + 7, centerY + 1],
+    coords45: [centerX + eyeSpacing + 8, centerY + 1],
+    coords46: [centerX + eyeSpacing + 9, centerY + 1],
+    coords47: [centerX + eyeSpacing + 10, centerY + 1],
+    coords48: [centerX + eyeSpacing + 11, centerY + 1],
   };
 }
 
 function getEyeCoordsOpening() {
   return {
     // Left
-    coord1: [centerX - 7, centerY],
-    coord2: [centerX - 8, centerY - 1],
-    coord3: [centerX - 9, centerY - 1],
-    coord4: [centerX - 10, centerY - 2],
-    coord5: [centerX - 11, centerY - 2],
-    coord6: [centerX - 12, centerY - 2],
-    coord7: [centerX - 13, centerY - 2],
-    coord8: [centerX - 14, centerY - 2],
-    coord9: [centerX - 15, centerY - 2],
-    coord10: [centerX - 16, centerY - 2],
-    coord11: [centerX - 17, centerY - 1],
-    coord12: [centerX - 18, centerY - 1],
-    coord13: [centerX - 19, centerY],
-    coord14: [centerX - 8, centerY + 1],
-    coord15: [centerX - 9, centerY + 1],
-    coord16: [centerX - 10, centerY + 2],
-    coord17: [centerX - 12, centerY + 2],
-    coord18: [centerX - 11, centerY + 2],
-    coord19: [centerX - 13, centerY + 2],
-    coord20: [centerX - 14, centerY + 2],
-    coord21: [centerX - 15, centerY + 2],
-    coord22: [centerX - 16, centerY + 2],
-    coord23: [centerX - 17, centerY + 1],
-    coord24: [centerX - 18, centerY + 1],
+    coords1: [centerX - eyeSpacing, centerY],
+    coords2: [centerX - eyeSpacing - 1, centerY - 1],
+    coords3: [centerX - eyeSpacing - 2, centerY - 1],
+    coords4: [centerX - eyeSpacing - 3, centerY - 2],
+    coords5: [centerX - eyeSpacing - 4, centerY - 2],
+    coords6: [centerX - eyeSpacing - 5, centerY - 2],
+    coords7: [centerX - eyeSpacing - 6, centerY - 2],
+    coords8: [centerX - eyeSpacing - 7, centerY - 2],
+    coords9: [centerX - eyeSpacing - 8, centerY - 2],
+    coords10: [centerX - eyeSpacing - 9, centerY - 2],
+    coords11: [centerX - eyeSpacing - 10, centerY - 1],
+    coords12: [centerX - eyeSpacing - 12, centerY - 1],
+    coords13: [centerX - eyeSpacing - 12, centerY],
+    coords14: [centerX - eyeSpacing - 1, centerY + 1],
+    coords15: [centerX - eyeSpacing - 2, centerY + 1],
+    coords16: [centerX - eyeSpacing - 3, centerY + 2],
+    coords17: [centerX - eyeSpacing - 5, centerY + 2],
+    coords18: [centerX - eyeSpacing - 4, centerY + 2],
+    coords19: [centerX - eyeSpacing - 6, centerY + 2],
+    coords20: [centerX - eyeSpacing - 7, centerY + 2],
+    coords21: [centerX - eyeSpacing - 8, centerY + 2],
+    coords22: [centerX - eyeSpacing - 9, centerY + 2],
+    coords23: [centerX - eyeSpacing - 10, centerY + 1],
+    coords24: [centerX - eyeSpacing - 11, centerY + 1],
 
     // Right
-    coord25: [centerX + 7, centerY],
-    coord26: [centerX + 8, centerY - 1],
-    coord27: [centerX + 9, centerY - 1],
-    coord28: [centerX + 10, centerY - 2],
-    coord29: [centerX + 11, centerY - 2],
-    coord30: [centerX + 12, centerY - 2],
-    coord31: [centerX + 13, centerY - 2],
-    coord32: [centerX + 14, centerY - 2],
-    coord33: [centerX + 15, centerY - 2],
-    coord34: [centerX + 16, centerY - 2],
-    coord35: [centerX + 17, centerY - 1],
-    coord36: [centerX + 18, centerY - 1],
-    coord37: [centerX + 19, centerY],
-    coord38: [centerX + 8, centerY + 1],
-    coord39: [centerX + 9, centerY + 1],
-    coord40: [centerX + 10, centerY + 2],
-    coord41: [centerX + 12, centerY + 2],
-    coord42: [centerX + 11, centerY + 2],
-    coord43: [centerX + 13, centerY + 2],
-    coord44: [centerX + 14, centerY + 2],
-    coord45: [centerX + 15, centerY + 2],
-    coord46: [centerX + 16, centerY + 2],
-    coord47: [centerX + 17, centerY + 1],
-    coord48: [centerX + 18, centerY + 1],
+    coords25: [centerX + eyeSpacing, centerY],
+    coords26: [centerX + eyeSpacing + 1, centerY - 1],
+    coords27: [centerX + eyeSpacing + 2, centerY - 1],
+    coords28: [centerX + eyeSpacing + 3, centerY - 2],
+    coords29: [centerX + eyeSpacing + 4, centerY - 2],
+    coords30: [centerX + eyeSpacing + 5, centerY - 2],
+    coords31: [centerX + eyeSpacing + 6, centerY - 2],
+    coords32: [centerX + eyeSpacing + 7, centerY - 2],
+    coords33: [centerX + eyeSpacing + 8, centerY - 2],
+    coords34: [centerX + eyeSpacing + 9, centerY - 2],
+    coords35: [centerX + eyeSpacing + 10, centerY - 1],
+    coords36: [centerX + eyeSpacing + 11, centerY - 1],
+    coords37: [centerX + eyeSpacing + 12, centerY],
+    coords38: [centerX + eyeSpacing + 1, centerY + 1],
+    coords39: [centerX + eyeSpacing + 2, centerY + 1],
+    coords40: [centerX + eyeSpacing + 3, centerY + 2],
+    coords41: [centerX + eyeSpacing + 5, centerY + 2],
+    coords42: [centerX + eyeSpacing + 4, centerY + 2],
+    coords43: [centerX + eyeSpacing + 6, centerY + 2],
+    coords44: [centerX + eyeSpacing + 7, centerY + 2],
+    coords45: [centerX + eyeSpacing + 8, centerY + 2],
+    coords46: [centerX + eyeSpacing + 9, centerY + 2],
+    coords47: [centerX + eyeSpacing + 10, centerY + 1],
+    coords48: [centerX + eyeSpacing + 11, centerY + 1],
   };
 }
 
 function getEyeCoordsOpened(movX, movY) {
   return {
     // Left
-    coord1: [centerX - 7, centerY],
-    coord2: [centerX - 8, centerY - 1],
-    coord3: [centerX - 9, centerY - 2],
-    coord5: [centerX - 10, centerY - 2],
-    coord6: [centerX - 11, centerY - 3],
-    coord7: [centerX - 12, centerY - 3],
-    coord8: [centerX - 13, centerY - 3],
-    coord9: [centerX - 14, centerY - 3],
-    coord10: [centerX - 15, centerY - 3],
-    coord12: [centerX - 16, centerY - 2],
-    coord13: [centerX - 17, centerY - 2],
-    coord14: [centerX - 18, centerY - 1],
-    coord15: [centerX - 19, centerY],
-    coord16: [centerX - 8, centerY + 1],
-    coord17: [centerX - 9, centerY + 2],
-    coord18: [centerX - 10, centerY + 2],
-    coord19: [centerX - 12, centerY + 3],
-    coord20: [centerX - 11, centerY + 3],
-    coord21: [centerX - 13, centerY + 3],
-    coord22: [centerX - 14, centerY + 3],
-    coord23: [centerX - 15, centerY + 3],
-    coord24: [centerX - 16, centerY + 2],
-    coord25: [centerX - 17, centerY + 2],
-    coord26: [centerX - 18, centerY + 1],
+    coords1: [centerX - eyeSpacing, centerY],
+    coords2: [centerX - eyeSpacing - 1, centerY - 1],
+    coords3: [centerX - eyeSpacing - 2, centerY - 2],
+    coords4: [centerX - eyeSpacing - 3, centerY - 2],
+    coords5: [centerX - eyeSpacing - 4, centerY - 3],
+    coords6: [centerX - eyeSpacing - 5, centerY - 3],
+    coords7: [centerX - eyeSpacing - 6, centerY - 3],
+    coords8: [centerX - eyeSpacing - 7, centerY - 3],
+    coords9: [centerX - eyeSpacing - 8, centerY - 3],
+    coords10: [centerX - eyeSpacing - 9, centerY - 2],
+    coords11: [centerX - eyeSpacing - 10, centerY - 2],
+    coords12: [centerX - eyeSpacing - 11, centerY - 1],
+    coords13: [centerX - eyeSpacing - 12, centerY],
+    coords14: [centerX - eyeSpacing - 1, centerY + 1],
+    coords15: [centerX - eyeSpacing - 2, centerY + 2],
+    coords16: [centerX - eyeSpacing - 3, centerY + 2],
+    coords17: [centerX - eyeSpacing - 5, centerY + 3],
+    coords18: [centerX - eyeSpacing - 4, centerY + 3],
+    coords19: [centerX - eyeSpacing - 6, centerY + 3],
+    coords20: [centerX - eyeSpacing - 7, centerY + 3],
+    coords21: [centerX - eyeSpacing - 8, centerY + 3],
+    coords22: [centerX - eyeSpacing - 9, centerY + 2],
+    coords23: [centerX - eyeSpacing - 10, centerY + 2],
+    coords24: [centerX - eyeSpacing - 11, centerY + 1],
+
+    // Right
+    coords25: [centerX + eyeSpacing, centerY],
+    coords26: [centerX + eyeSpacing + 1, centerY - 1],
+    coords27: [centerX + eyeSpacing + 2, centerY - 2],
+    coords28: [centerX + eyeSpacing + 3, centerY - 2],
+    coords29: [centerX + eyeSpacing + 4, centerY - 3],
+    coords30: [centerX + eyeSpacing + 5, centerY - 3],
+    coords31: [centerX + eyeSpacing + 6, centerY - 3],
+    coords32: [centerX + eyeSpacing + 7, centerY - 3],
+    coords33: [centerX + eyeSpacing + 8, centerY - 3],
+    coords34: [centerX + eyeSpacing + 9, centerY - 2],
+    coords35: [centerX + eyeSpacing + 10, centerY - 2],
+    coords36: [centerX + eyeSpacing + 11, centerY - 1],
+    coords37: [centerX + eyeSpacing + 12, centerY],
+    coords38: [centerX + eyeSpacing + 1, centerY + 1],
+    coords39: [centerX + eyeSpacing + 2, centerY + 2],
+    coords40: [centerX + eyeSpacing + 3, centerY + 2],
+    coords41: [centerX + eyeSpacing + 5, centerY + 3],
+    coords42: [centerX + eyeSpacing + 4, centerY + 3],
+    coords43: [centerX + eyeSpacing + 6, centerY + 3],
+    coords44: [centerX + eyeSpacing + 7, centerY + 3],
+    coords45: [centerX + eyeSpacing + 8, centerY + 3],
+    coords46: [centerX + eyeSpacing + 9, centerY + 2],
+    coords47: [centerX + eyeSpacing + 10, centerY + 2],
+    coords48: [centerX + eyeSpacing + 11, centerY + 1],
 
     // Left brows
-    coord27: [centerX - 8, centerY - 5],
-    coord28: [centerX - 10, centerY - 5],
-    coord29: [centerX - 12, centerY - 5],
-    coord30: [centerX - 14, centerY - 5],
-    coord31: [centerX - 16, centerY - 5],
-    coord32: [centerX - 18, centerY - 5],
-    coord33: [centerX - 7, centerY - 6],
-    coord34: [centerX - 9, centerY - 6],
-    coord35: [centerX - 12, centerY - 6],
-    coord36: [centerX - 14, centerY - 6],
-    coord37: [centerX - 17, centerY - 6],
-    coord38: [centerX - 19, centerY - 6],
+    leftBrow: [
+      [centerX - eyeSpacing - 1, centerY - 5],
+      [centerX - eyeSpacing - 3, centerY - 5],
+      [centerX - eyeSpacing - 5, centerY - 5],
+      [centerX - eyeSpacing - 7, centerY - 5],
+      [centerX - eyeSpacing - 9, centerY - 5],
+      [centerX - eyeSpacing - 11, centerY - 5],
+      [centerX - eyeSpacing, centerY - 6],
+      [centerX - eyeSpacing - 2, centerY - 6],
+      [centerX - eyeSpacing - 5, centerY - 6],
+      [centerX - eyeSpacing - 7, centerY - 6],
+      [centerX - eyeSpacing - 10, centerY - 6],
+      [centerX - eyeSpacing - 12, centerY - 6],
+    ],
 
     // Left pupil
-    pupilLeft: [
-      [centerX + movX - 12, centerY - movY],
-      [centerX + movX - 12, centerY - movY - 1],
-      [centerX + movX - 13, centerY - movY - 1],
-      [centerX + movX - 14, centerY - movY - 1],
-      [centerX + movX - 14, centerY - movY],
-      [centerX + movX - 12, centerY - movY + 1],
-      [centerX + movX - 13, centerY - movY + 1],
-      [centerX + movX - 14, centerY - movY + 1],
+    leftPupil: [
+      [centerX - eyeSpacing + movX - 5, centerY - movY],
+      [centerX - eyeSpacing + movX - 5, centerY - movY - 1],
+      [centerX - eyeSpacing + movX - 6, centerY - movY - 1],
+      [centerX - eyeSpacing + movX - 7, centerY - movY - 1],
+      [centerX - eyeSpacing + movX - 7, centerY - movY],
+      [centerX - eyeSpacing + movX - 5, centerY - movY + 1],
+      [centerX - eyeSpacing + movX - 6, centerY - movY + 1],
+      [centerX - eyeSpacing + movX - 7, centerY - movY + 1],
     ],
-    // Right
-    coord39: [centerX + 7, centerY],
-    coord40: [centerX + 8, centerY - 1],
-    coord41: [centerX + 9, centerY - 2],
-    coord42: [centerX + 10, centerY - 2],
-    coord43: [centerX + 11, centerY - 3],
-    coord44: [centerX + 12, centerY - 3],
-    coord45: [centerX + 13, centerY - 3],
-    coord46: [centerX + 14, centerY - 3],
-    coord47: [centerX + 15, centerY - 3],
-    coord48: [centerX + 16, centerY - 2],
-    coord49: [centerX + 17, centerY - 2],
-    coord50: [centerX + 18, centerY - 1],
-    coord51: [centerX + 19, centerY],
-    coord52: [centerX + 8, centerY + 1],
-    coord53: [centerX + 9, centerY + 2],
-    coord54: [centerX + 10, centerY + 2],
-    coord55: [centerX + 12, centerY + 3],
-    coord56: [centerX + 11, centerY + 3],
-    coord57: [centerX + 13, centerY + 3],
-    coord58: [centerX + 14, centerY + 3],
-    coord59: [centerX + 15, centerY + 3],
-    coord60: [centerX + 16, centerY + 2],
-    coord61: [centerX + 17, centerY + 2],
-    coord62: [centerX + 18, centerY + 1],
 
     // Right brows
-    coord63: [centerX + 8, centerY - 5],
-    coord64: [centerX + 10, centerY - 5],
-    coord65: [centerX + 12, centerY - 5],
-    coord66: [centerX + 14, centerY - 5],
-    coord67: [centerX + 16, centerY - 5],
-    coord68: [centerX + 18, centerY - 5],
-    coord69: [centerX + 7, centerY - 6],
-    coord70: [centerX + 9, centerY - 6],
-    coord71: [centerX + 12, centerY - 6],
-    coord72: [centerX + 14, centerY - 6],
-    coord73: [centerX + 17, centerY - 6],
-    coord74: [centerX + 19, centerY - 6],
+    rightBrow: [
+      [centerX + eyeSpacing + 1, centerY - 5],
+      [centerX + eyeSpacing + 3, centerY - 5],
+      [centerX + eyeSpacing + 5, centerY - 5],
+      [centerX + eyeSpacing + 7, centerY - 5],
+      [centerX + eyeSpacing + 9, centerY - 5],
+      [centerX + eyeSpacing + 11, centerY - 5],
+      [centerX + eyeSpacing, centerY - 6],
+      [centerX + eyeSpacing + 2, centerY - 6],
+      [centerX + eyeSpacing + 4, centerY - 6],
+      [centerX + eyeSpacing + 6, centerY - 6],
+      [centerX + eyeSpacing + 10, centerY - 6],
+      [centerX + eyeSpacing + 12, centerY - 6],
+    ],
 
     // Right pupil
-    pupilRight: [
-      [centerX + movX + 12, centerY - movY],
-      [centerX + movX + 12, centerY - movY - 1],
-      [centerX + movX + 13, centerY - movY - 1],
-      [centerX + movX + 14, centerY - movY - 1],
-      [centerX + movX + 14, centerY - movY],
-      [centerX + movX + 12, centerY - movY + 1],
-      [centerX + movX + 13, centerY - movY + 1],
-      [centerX + movX + 14, centerY - movY + 1],
+    rightPupil: [
+      [centerX + eyeSpacing + movX + 5, centerY - movY],
+      [centerX + eyeSpacing + movX + 5, centerY - movY - 1],
+      [centerX + eyeSpacing + movX + 6, centerY - movY - 1],
+      [centerX + eyeSpacing + movX + 7, centerY - movY - 1],
+      [centerX + eyeSpacing + movX + 7, centerY - movY],
+      [centerX + eyeSpacing + movX + 5, centerY - movY + 1],
+      [centerX + eyeSpacing + movX + 6, centerY - movY + 1],
+      [centerX + eyeSpacing + movX + 7, centerY - movY + 1],
     ],
   };
 }
@@ -476,71 +488,169 @@ function getEyeCoordsOpened(movX, movY) {
 // --- Pupil position state must be set before using it in
 let movX = 0; // Pupil movement in X direction
 let movY = 0; // Pupil movement in Y direction
-let prevX = 0; // Previous X position
-let prevY = 0; // Previous Y position
 
 // now build your eye‐frame lookup tables
-const EyeCoordsShut = getEyeCoordsShut();
-const EyeCoordsSemiShut = getEyeCoordsSemiShut();
-const EyeCoordsOpening = getEyeCoordsOpening();
-let EyeCoordsOpened = getEyeCoordsOpened(movX, movY);
+const EyeCoordsShut = Object.values(getEyeCoordsShut());
+const EyeCoordsSemiShut = Object.values(getEyeCoordsSemiShut());
+const EyeCoordsOpening = Object.values(getEyeCoordsOpening());
+// get all values on EyeCoordsOpened except the left and right pupils and brows
+function EyeKeysOpened() {
+  return Object.keys(getEyeCoordsOpened(movX, movY)).filter(
+    (key) =>
+      key !== "leftBrow" &&
+      key !== "rightBrow" &&
+      key !== "leftPupil" &&
+      key !== "rightPupil"
+  );
+}
+const EyeCoordsLeftBrows = Object.values(
+  getEyeCoordsOpened(movX, movY).leftBrow
+);
+const EyeCoordsRightBrows = Object.values(
+  getEyeCoordsOpened(movX, movY).rightBrow
+);
+const EyeCoordsLeftPupil = Object.values(
+  getEyeCoordsOpened(movX, movY).leftPupil
+);
+const EyeCoordsRightPupil = Object.values(
+  getEyeCoordsOpened(movX, movY).rightPupil
+);
+let pupilCoords = [...EyeCoordsLeftPupil, ...EyeCoordsRightPupil];
+let EyeCoordsBrows = [...EyeCoordsLeftBrows, ...EyeCoordsRightBrows];
+let EyeCoordsOpenedNoPupils = [];
+for (let coord of EyeKeysOpened()) {
+  EyeCoordsOpenedNoPupils.push(getEyeCoordsOpened(movX, movY)[coord]);
+}
+let EyeCoordsOpened = [
+  ...EyeCoordsOpenedNoPupils,
+  ...pupilCoords,
+  ...EyeCoordsBrows,
+]; // Initialize with pupil and brow coordinates
+
+console.log(EyeKeysOpened()); // Log the keys of opened eye coordinates
+
+console.log(EyeCoordsOpened); // Log the opened eye coordinates
+
+let randomPupilMov = false;
 
 // --- Pupil movement ---
 function getPupilMovement(callback) {
+  randomPupilMov = true;
   let prevX = movX;
   let prevY = movY;
 
   function getNextMove(currentX, currentY) {
-    const r = Math.random();
+    const randomness = Math.random();
     let deltaX =
-      r < 0.7
+      randomness < 0.7
         ? Math.floor(Math.random() * 3) - 1
         : Math.floor(Math.random() * 5) - 2;
     let deltaY =
-      r < 0.7
+      randomness < 0.7
         ? Math.floor(Math.random() * 3) - 1
         : Math.floor(Math.random() * 5) - 2;
-    return [
-      Math.max(-3, Math.min(3, currentX + deltaX)),
-      Math.max(-2, Math.min(2, currentY + deltaY)),
-    ];
+
+    let newX = Math.max(-3, Math.min(3, currentX + deltaX));
+    let newY = Math.max(-2, Math.min(2, currentY + deltaY));
+
+    return [newX, newY];
   }
 
-  const steps = 20,
-    stepDelay = 150;
+  const steps = 20;
+  const stepDelay = 150; // Faster but smooth movement
+
   for (let mov = 0; mov < steps; mov++) {
     setTimeout(() => {
-      // clear last pupil
-      const prevCoords = getEyeCoordsOpened(prevX, prevY);
+      // Remove previous pupil glow
+      const EyeCoordsPrev = pupilCoords;
+
       for (let dot of dots) {
-        let x = +dot.dataset.x,
-          y = +dot.dataset.y;
-        if (prevCoords[`${x},${y}`]) dot.classList.remove("glow");
+        const x = parseInt(dot.dataset.x);
+        const y = parseInt(dot.dataset.y);
+        for (let [fx, fy] of EyeCoordsPrev) {
+          if (x === fx && y === fy) {
+            dot.classList.remove("glow");
+            break;
+          }
+        }
       }
 
-      // compute & draw new pupil
-      [movX, movY] = getNextMove(prevX, prevY);
-      EyeCoordsOpened = getEyeCoordsOpened(movX, movY);
+      // Move pupil
+      const [newX, newY] = getNextMove(prevX, prevY);
+      movX = newX;
+      movY = newY;
+
+      pupilCoords = [
+        ...getEyeCoordsOpened(movX, movY).leftPupil,
+        ...getEyeCoordsOpened(movX, movY).rightPupil,
+      ];
+
+      // Add new pupil glow
       for (let dot of dots) {
-        let x = +dot.dataset.x,
-          y = +dot.dataset.y;
-        if (EyeCoordsOpened[`${x},${y}`]) dot.classList.add("glow");
+        const x = parseInt(dot.dataset.x);
+        const y = parseInt(dot.dataset.y);
+        for (let [fx, fy] of pupilCoords) {
+          if (x === fx && y === fy) {
+            dot.classList.add("glow");
+            break;
+          }
+        }
+
+        for (let [fx, fy] of EyeCoordsOpenedNoPupils) {
+          if (x === fx && y === fy) {
+            dot.classList.add("glow");
+            break;
+          }
+        }
+
+        for (let [fx, fy] of EyeCoordsBrows) {
+          if (x === fx && y === fy) {
+            dot.classList.add("glow");
+            break;
+          }
+        }
       }
 
       prevX = movX;
       prevY = movY;
 
-      // after last step, clear and callback
+      // After last move, clean up and callback
       if (mov === steps - 1) {
-        setTimeout(() => {
-          const last = getEyeCoordsOpened(movX, movY);
-          for (let dot of dots) {
-            let x = +dot.dataset.x,
-              y = +dot.dataset.y;
-            if (last[`${x},${y}`]) dot.classList.remove("glow");
+        for (let dot of dots) {
+          pupilCoords = [
+            ...getEyeCoordsOpened(prevX, prevY).leftPupil,
+            ...getEyeCoordsOpened(prevX, prevY).rightPupil,
+          ];
+          const x = parseInt(dot.dataset.x);
+          const y = parseInt(dot.dataset.y);
+          for (let [fx, fy] of pupilCoords) {
+            if (x === fx && y === fy) {
+              dot.classList.remove("glow");
+              break;
+            }
           }
-          callback && callback();
-        }, 300);
+
+          for (let [fx, fy] of EyeCoordsOpenedNoPupils) {
+            if (x === fx && y === fy) {
+              dot.classList.add("glow");
+              break;
+            }
+          }
+
+          pupilCoords = [
+            ...getEyeCoordsOpened(0, 0).leftPupil,
+            ...getEyeCoordsOpened(0, 0).rightPupil,
+          ];
+
+          for (let [fx, fy] of pupilCoords) {
+            if (x === fx && y === fy) {
+              dot.classList.add("glow");
+              break;
+            }
+          }
+        }
+
+        if (callback) callback(); // Trigger blinking
       }
     }, mov * stepDelay);
   }
@@ -548,73 +658,97 @@ function getPupilMovement(callback) {
 
 // --- Eye drawing stages ---
 function drawMatrixEyes() {
-  const cD = 200,
-    sD = 200,
-    oD = 200,
-    hD = 400,
-    bD = 1000;
+  const closed = 200;
+  const semiClosed = 2000;
+  const opening = 2100;
+  const opened = 2200;
 
-  function applyEyeGlow(dot, coords, cls, start, end) {
-    let x = +dot.dataset.x,
-      y = +dot.dataset.y;
-    if (coords[`${x},${y}`]) {
-      setTimeout(() => dot.classList.add(cls), start);
-      if (end != null) setTimeout(() => dot.classList.remove(cls), end);
+  console.log(); // 42
+
+  function getEyesClosed(start, end, dot) {
+    for (let [fx, fy] of EyeCoordsShut) {
+      if (parseInt(dot.dataset.x) === fx && parseInt(dot.dataset.y) === fy) {
+        setTimeout(() => dot.classList.add("glow-soft"), start);
+        setTimeout(() => dot.classList.remove("glow-soft"), end);
+        break;
+      }
+    }
+  }
+
+  function getEyesSemiShut(start, end, dot) {
+    for (let [fx, fy] of EyeCoordsSemiShut) {
+      if (parseInt(dot.dataset.x) === fx && parseInt(dot.dataset.y) === fy) {
+        setTimeout(() => dot.classList.add("glow-soft"), start);
+        setTimeout(() => dot.classList.remove("glow-soft"), end);
+        break;
+      }
+    }
+  }
+
+  function getEyesOpening(start, end, dot) {
+    for (let [fx, fy] of EyeCoordsOpening) {
+      if (parseInt(dot.dataset.x) === fx && parseInt(dot.dataset.y) === fy) {
+        setTimeout(() => dot.classList.add("glow-medium"), start);
+        setTimeout(() => dot.classList.remove("glow-medium"), end);
+        break;
+      }
+    }
+  }
+
+  function getEyesOpened(start, dot) {
+    const x = parseInt(dot.dataset.x);
+    const y = parseInt(dot.dataset.y);
+
+    for (let [fx, fy] of EyeCoordsOpened) {
+      if (x === fx && y === fy) {
+        setTimeout(() => dot.classList.add("glow"), start);
+        break;
+      }
     }
   }
 
   function animateEyesOpening() {
     for (let dot of dots) {
-      applyEyeGlow(dot, EyeCoordsShut, "glow-soft", 0, cD);
-      applyEyeGlow(dot, EyeCoordsSemiShut, "glow-soft", cD, cD + sD);
-      applyEyeGlow(dot, EyeCoordsOpening, "glow-medium", cD + sD, cD + sD + oD);
-      applyEyeGlow(dot, EyeCoordsOpened, "glow", cD + sD + oD, null);
+      getEyesClosed(0, semiClosed, dot);
+      getEyesSemiShut(semiClosed, opening, dot);
+      getEyesOpening(opening, opened, dot);
+      getEyesOpened(opened, dot);
     }
   }
 
-  function animateEyesBlinking(cb) {
+  function animateEyesBlinking() {
     for (let dot of dots) {
-      applyEyeGlow(dot, EyeCoordsOpened, "glow", 0, 100);
-      applyEyeGlow(dot, EyeCoordsOpening, "glow-medium", 100, 200);
-      applyEyeGlow(dot, EyeCoordsSemiShut, "glow-soft", 200, 300);
-      applyEyeGlow(dot, EyeCoordsShut, "glow-soft", 300, 400);
-      applyEyeGlow(dot, EyeCoordsSemiShut, "glow-soft", 400, 500);
-      applyEyeGlow(dot, EyeCoordsOpening, "glow-medium", 500, 600);
-      applyEyeGlow(dot, EyeCoordsOpened, "glow", 600, null);
-    }
-    setTimeout(() => cb && cb(), 700);
-  }
+      // --- CLEAR ALL GLOWS before starting blink animation ---
+      const x = parseInt(dot.dataset.x);
+      const y = parseInt(dot.dataset.y);
+      for (let [fx, fy] of EyeCoordsOpened) {
+        if (x === fx && y === fy) {
+          dot.classList.remove("glow");
+          break;
+        }
+      }
 
-  function clearOnlyPupilGlow(x, y) {
-    const pup = getEyeCoordsOpened(x, y);
-    for (let dot of dots) {
-      let dx = +dot.dataset.x,
-        dy = +dot.dataset.y;
-      if (pup[`${dx},${dy}`]) dot.classList.remove("glow");
-    }
-  }
-
-  function showCenteredPupil() {
-    movX = 0;
-    movY = 0;
-    EyeCoordsOpened = getEyeCoordsOpened(0, 0);
-    for (let dot of dots) {
-      let x = +dot.dataset.x,
-        y = +dot.dataset.y;
-      if (EyeCoordsOpened[`${x},${y}`]) dot.classList.add("glow");
+      // START CLOSING IMMEDIATELY
+      getEyesOpening(200, 400, dot);
+      getEyesSemiShut(400, 600, dot);
+      getEyesClosed(600, 800, dot);
+      getEyesSemiShut(800, 1000, dot);
+      getEyesOpening(1000, 1200, dot);
+      getEyesOpened(1200, dot); // Finally open again
     }
   }
 
+  // Start the sequence
   animateEyesOpening();
-  let fullOpen = cD + sD + oD + hD;
+
+  // After fully open, start pupil movement, THEN blink once
   setTimeout(() => {
     getPupilMovement(() => {
-      clearOnlyPupilGlow(movX, movY);
       setTimeout(() => {
-        animateEyesBlinking(() => showCenteredPupil());
-      }, 200);
+        animateEyesBlinking();
+      }, 500);
     });
-  }, fullOpen + bD);
+  }, opened + 500);
 }
 
-drawMatrixEyes();
+drawMatrixEyes(); // Start the eye animation
