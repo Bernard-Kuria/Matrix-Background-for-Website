@@ -26,8 +26,6 @@ function generateGrid() {
   }
 }
 
-generateGrid(); // Initial grid setup
-
 // Diagonal wave animation
 
 /****chatGPT's version (more ambient and fluid)****/
@@ -59,15 +57,6 @@ function animateWave() {
   requestAnimationFrame(animateWave);
 }
 
-// animateWave(); // Start loop once
-
-// Rebuild grid and reset wave on resize
-
-window.addEventListener("resize", () => {
-  generateGrid();
-  wave = 0;
-});
-
 /*****Mouse hover effect on the matrix*****/
 function mousehoverEffect(e) {
   const rect = container.getBoundingClientRect();
@@ -89,8 +78,6 @@ function mousehoverEffect(e) {
     }
   }
 }
-
-container.addEventListener("mousemove", mousehoverEffect);
 
 /*****Wave on Reload*****/
 function crissCrossWave() {
@@ -119,10 +106,6 @@ function crissCrossWave() {
   }
 }
 
-window.addEventListener("load", () => {
-  crissCrossWave(); // Start the vertical wave on page load
-});
-
 /*****Twinkling effect*****/
 function twinkleEffect() {
   for (let dot of dots) {
@@ -137,8 +120,6 @@ function twinkleEffect() {
     }
   }
 }
-
-setInterval(twinkleEffect, 100); // Twinkle every second
 
 function handleHover(e) {
   const target = e.target;
@@ -183,8 +164,6 @@ function waterWave() {
   }
 }
 
-waterWave(); // Start the wave effect on page load
-
 // Find center dot and glow
 const centerX = Math.floor(cols / 2);
 const centerY = Math.floor(rows / 2);
@@ -198,7 +177,6 @@ function glowCenterDot() {
     }
   }
 }
-glowCenterDot(); // Start the glow effect on page load
 
 // --- Eye drawing functions ---
 let eyeSpacing = 5; // Space between eyes
@@ -750,5 +728,27 @@ function drawMatrixEyes() {
     });
   }, opened + 500);
 }
+
+/*****Calling of features*****/
+generateGrid(); // Initial grid setup
+
+// animateWave(); // Start loop once// Rebuild grid and reset wave on resize
+
+window.addEventListener("resize", () => {
+  generateGrid();
+  wave = 0;
+});
+
+container.addEventListener("mousemove", mousehoverEffect);
+
+window.addEventListener("load", () => {
+  crissCrossWave(); // Start the vertical wave on page load
+});
+
+setInterval(twinkleEffect, 100); // Twinkle every second
+
+waterWave(); // Start the wave effect on page load
+
+glowCenterDot(); // Start the glow effect on page load
 
 drawMatrixEyes(); // Start the eye animation
